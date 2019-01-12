@@ -3,7 +3,7 @@ from setuptools import setup
 from setuptools.command import easy_install
 from setuptools.command.install import install
 
-VERSION = '2.1.0-rc4'
+VERSION = '2.1.0-rc5'
 
 
 class InstallDefaultDecoder(install):
