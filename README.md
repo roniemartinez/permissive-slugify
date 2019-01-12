@@ -52,16 +52,8 @@ Fork of [un33k/python-slugify](https://github.com/un33k/python-slugify) to fix [
 
 By default, python-slugify2 uses [Unidecode](https://github.com/avian2/unidecode) as decoder which is GPL-licensed.
 
-### Using pip
-
 ```bash
 pip install python-slugify2
-```
-
-### Using easy_install
-
-```bash
-easy_install python-slugify2
 ```
 
 ### Specifying decoder
