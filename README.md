@@ -155,6 +155,7 @@ assert r == "10-or-20-percent"
 ## References
 
 - [Add ability to specify "default" extras_require](https://github.com/pypa/setuptools/issues/1139)
+- [setup.py not ran on wheels](https://stackoverflow.com/questions/40433168/running-custom-code-with-pip-install-fails#comment75920547_40434969)
 
 ## Author
 
