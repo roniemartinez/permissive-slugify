@@ -1,37 +1,37 @@
-# python-slugify2
+# permissive-slugify
 
 Fork of [un33k/python-slugify](https://github.com/un33k/python-slugify) to fix [issue 68](https://github.com/un33k/python-slugify/issues/68).
 
 <table>
     <tr>
         <td>License</td>
-        <td><img src='https://img.shields.io/pypi/l/python-slugify2.svg'></td>
+        <td><img src='https://img.shields.io/pypi/l/permissive-slugify.svg'></td>
         <td>Version</td>
-        <td><img src='https://img.shields.io/pypi/v/python-slugify2.svg'></td>
+        <td><img src='https://img.shields.io/pypi/v/permissive-slugify.svg'></td>
     </tr>
     <tr>
         <td>Travis CI</td>
-        <td><img src='https://travis-ci.org/roniemartinez/python-slugify2.svg?branch=develop'></td>
+        <td><img src='https://travis-ci.org/roniemartinez/permissive-slugify.svg?branch=master'></td>
         <td>Coverage</td>
-        <td><img src='https://codecov.io/gh/roniemartinez/python-slugify2/branch/develop/graph/badge.svg'></td>
+        <td><img src='https://codecov.io/gh/roniemartinez/permissive-slugify/branch/master/graph/badge.svg'></td>
     </tr>
     <tr>
         <td>AppVeyor</td>
-        <td><img src='https://ci.appveyor.com/api/projects/status/srpweajn7vq7hq02/branch/develop?svg=true'></td>
+        <td><img src='https://ci.appveyor.com/api/projects/status/srpweajn7vq7hq02/branch/master?svg=true'></td>
         <td>Supported versions</td>
-        <td><img src='https://img.shields.io/pypi/pyversions/python-slugify2.svg'></td>
+        <td><img src='https://img.shields.io/pypi/pyversions/permissive-slugify.svg'></td>
     </tr>
     <tr>
         <td>Wheel</td>
-        <td><img src='https://img.shields.io/pypi/wheel/python-slugify2.svg'></td>
+        <td><img src='https://img.shields.io/pypi/wheel/permissive-slugify.svg'></td>
         <td>Implementation</td>
-        <td><img src='https://img.shields.io/pypi/implementation/python-slugify2.svg'></td>
+        <td><img src='https://img.shields.io/pypi/implementation/permissive-slugify.svg'></td>
     </tr>
     <tr>
         <td>Status</td>
-        <td><img src='https://img.shields.io/pypi/status/python-slugify2.svg'></td>
+        <td><img src='https://img.shields.io/pypi/status/permissive-slugify.svg'></td>
         <td>Downloads</td>
-        <td><img src='https://img.shields.io/pypi/dm/python-slugify2.svg'></td>
+        <td><img src='https://img.shields.io/pypi/dm/permissive-slugify.svg'></td>
     </tr>
     <tr>
         <td>Show your support</td>
@@ -50,10 +50,10 @@ Fork of [un33k/python-slugify](https://github.com/un33k/python-slugify) to fix [
 
 ## How to install
 
-By default, python-slugify2 uses [Unidecode](https://github.com/avian2/unidecode) as decoder which is GPL-licensed.
+By default, permissive-slugify uses [Unidecode](https://github.com/avian2/unidecode) as decoder which is GPL-licensed.
 
 ```bash
-pip install python-slugify2
+pip install permissive-slugify
 ```
 
 ### Specifying decoder
@@ -63,15 +63,15 @@ You can specify which decoder will be used:
 - [Unidecode](https://github.com/avian2/unidecode) - *(GPL-licensed)*.
 
     ```bash
-    pip install python-slugify2[unidecode]
-    easy_install python-slugify2[unidecode]
+    pip install permissive-slugify[unidecode]
+    easy_install permissive-slugify[unidecode]
     ```
 
 - [text-unidecode](https://github.com/kmike/text-unidecode) *(GPL & Perl Artistic)*
 
     ```bash
-    pip install python-slugify2[text-unidecode]
-    easy_install python-slugify2[text-unidecode]
+    pip install permissive-slugify[text-unidecode]
+    easy_install permissive-slugify[text-unidecode]
     ```
 
 ## How to use
@@ -81,66 +81,66 @@ You can specify which decoder will be used:
 from slugify import slugify
 
 txt = "This is a test ---"
-r = slugify(txt)
-assert r == "this-is-a-test"
+slug = slugify(txt)
+assert slug == "this-is-a-test"
 
 txt = '影師嗎'
-r = slugify(txt)
-assert r == "ying-shi-ma"
+slug = slugify(txt)
+assert slug == "ying-shi-ma"
 
 txt = 'C\'est déjà l\'été.'
-r = slugify(txt)
-assert r == "c-est-deja-l-ete"
+slug = slugify(txt)
+assert slug == "c-est-deja-l-ete"
 
 txt = 'Nín hǎo. Wǒ shì zhōng guó rén'
-r = slugify(txt)
-assert r == "nin-hao-wo-shi-zhong-guo-ren"
+slug = slugify(txt)
+assert slug == "nin-hao-wo-shi-zhong-guo-ren"
 
 txt = 'Компьютер'
-r = slugify(txt)
-assert r == "kompiuter"
+slug = slugify(txt)
+assert slug == "kompiuter"
 
 txt = 'jaja---lol-méméméoo--a'
-r = slugify(txt, max_length=9)
-assert r == "jaja-lol"
+slug = slugify(txt, max_length=9)
+assert slug == "jaja-lol"
 
 txt = 'jaja---lol-méméméoo--a'
-r = slugify(txt, max_length=15, word_boundary=True)
-assert r == "jaja-lol-a"
+slug = slugify(txt, max_length=15, word_boundary=True)
+assert slug == "jaja-lol-a"
 
 txt = 'jaja---lol-méméméoo--a'
-r = slugify(txt, max_length=20, word_boundary=True, separator=".")
-assert r == "jaja.lol.mememeoo.a"
+slug = slugify(txt, max_length=20, word_boundary=True, separator=".")
+assert slug == "jaja.lol.mememeoo.a"
 
 txt = 'one two three four five'
-r = slugify(txt, max_length=13, word_boundary=True, save_order=True)
-assert r == "one-two-three"
+slug = slugify(txt, max_length=13, word_boundary=True, save_order=True)
+assert slug == "one-two-three"
 
 txt = 'the quick brown fox jumps over the lazy dog'
-r = slugify(txt, stopwords=['the'])
-assert r == 'quick-brown-fox-jumps-over-lazy-dog'
+slug = slugify(txt, stopwords=['the'])
+assert slug == 'quick-brown-fox-jumps-over-lazy-dog'
 
 txt = 'the quick brown fox jumps over the lazy dog in a hurry'
-r = slugify(txt, stopwords=['the', 'in', 'a', 'hurry'])
-assert r == 'quick-brown-fox-jumps-over-lazy-dog'
+slug = slugify(txt, stopwords=['the', 'in', 'a', 'hurry'])
+assert slug == 'quick-brown-fox-jumps-over-lazy-dog'
 
 txt = 'thIs Has a stopword Stopword'
-r = slugify(txt, stopwords=['Stopword'], lowercase=False)
-assert r == 'thIs-Has-a-stopword'
+slug = slugify(txt, stopwords=['Stopword'], lowercase=False)
+assert slug == 'thIs-Has-a-stopword'
 
 txt = "___This is a test___"
 regex_pattern = r'[^-a-z0-9_]+'
-r = slugify(txt, regex_pattern=regex_pattern)
-assert r == "___this-is-a-test___"
+slug = slugify(txt, regex_pattern=regex_pattern)
+assert slug == "___this-is-a-test___"
 
 txt = "___This is a test___"
 regex_pattern = r'[^-a-z0-9_]+'
-r = slugify(txt, separator='_', regex_pattern=regex_pattern)
-assert r != "_this_is_a_test_"
+slug = slugify(txt, separator='_', regex_pattern=regex_pattern)
+assert slug != "_this_is_a_test_"
 
 txt = '10 | 20 %'
-r = slugify(txt, replacements=[['|', 'or'], ['%', 'percent']])
-assert r == "10-or-20-percent"
+slug = slugify(txt, replacements=[['|', 'or'], ['%', 'percent']])
+assert slug == "10-or-20-percent"
 
 ```
 

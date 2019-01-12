@@ -5,7 +5,7 @@ from setuptools import setup
 from setuptools.command import easy_install
 from setuptools.command.install import install
 
-VERSION = '2.1.2'
+VERSION = '1.0.0'
 
 
 class InstallDefaultDecoder(install):
@@ -23,11 +23,11 @@ class InstallDefaultDecoder(install):
 
 
 setup(
-    name='python-slugify2',
+    name='permissive-slugify',
     version=VERSION,
     packages=['slugify'],
-    url='https://github.com/roniemartinez/python-slugify2',
-    download_url='https://github.com/roniemartinez/python-slugify2/tarball/{}'.format(VERSION),
+    url='https://github.com/roniemartinez/permissive-slugify',
+    download_url='https://github.com/roniemartinez/permissive-slugify/tarball/{}'.format(VERSION),
     license='MIT',
     author='Ronie Martinez',
     author_email='ronmarti18@gmail.com',
