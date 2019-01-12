@@ -1,9 +1,11 @@
 #!/usr/bin/env python
+import codecs
+
 from setuptools import setup
 from setuptools.command import easy_install
 from setuptools.command.install import install
 
-VERSION = '2.1.1'
+VERSION = '2.1.2-rc1'
 
 
 class InstallDefaultDecoder(install):
@@ -30,7 +32,7 @@ setup(
     author='Ronie Martinez',
     author_email='ronmarti18@gmail.com',
     description='Fork of un33k/python-slugify to fix issue #68',
-    long_description=open('README.md').read(),
+    long_description=codecs.open('README.md', encoding='utf-8').read(),
     long_description_content_type='text/markdown',
     keywords=[],
     cmdclass={
