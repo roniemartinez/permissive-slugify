@@ -1,8 +1,17 @@
 #!/usr/bin/env python
 
 from setuptools import setup
+from setuptools.command.install import install
 
-VERSION = '2.1.0-rc1'
+VERSION = '2.1.0-rc2'
+
+
+class CustomInstallCommand(install):
+
+    def run(self):
+        print(self.distribution.extra_requires)
+        install.run(self)
+
 
 setup(
     name='python-slugify2',
@@ -17,10 +26,13 @@ setup(
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     keywords=[],
+    cmdclass={
+        'install': CustomInstallCommand
+    },
     extras_require={
         '': 'Unidecode>=0.04.16',
-        'unicodecode': 'Unidecode>=0.04.16',
-        'text-unidecode': 'text-unidecode==1.2'
+        'unidecode': 'Unidecode>=0.04.16',
+        'text': 'text-unidecode==1.2'
     },
     entry_points={'console_scripts': ['slugify=slugify.slugify:main']},
     classifiers=[

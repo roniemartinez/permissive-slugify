@@ -121,19 +121,11 @@ def slugify(text, entities=True, decimal=True, hexadecimal=True, max_length=0, w
 
     # decimal character reference
     if decimal:
-        # noinspection PyBroadException
-        try:
-            text = DECIMAL_PATTERN.sub(lambda m: unichr(int(m.group(1))), text)
-        except Exception:
-            pass
+        text = DECIMAL_PATTERN.sub(lambda m: unichr(int(m.group(1))), text)
 
     # hexadecimal character reference
     if hexadecimal:
-        # noinspection PyBroadException
-        try:
-            text = HEX_PATTERN.sub(lambda m: unichr(int(m.group(1), 16)), text)
-        except Exception:
-            pass
+        text = HEX_PATTERN.sub(lambda m: unichr(int(m.group(1), 16)), text)
 
     # translate
     text = unicodedata.normalize('NFKD', text)

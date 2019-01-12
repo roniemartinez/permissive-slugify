@@ -1,6 +1,6 @@
 # python-slugify2
 
-Fork of [un33k/python-slugify](https://github.com/un33k/python-slugify) to fix [issue 68](https://github.com/un33k/python-slugify/issues/68). 
+Fork of [un33k/python-slugify](https://github.com/un33k/python-slugify) to fix [issue 68](https://github.com/un33k/python-slugify/issues/68).
 
 <table>
     <tr>
@@ -52,15 +52,15 @@ In cases where both `Unidecode` and `text-unidecode` are installed, `Unidecode` 
 
 ## How to install
 
-    1. easy_install python-slugify2
-    2. pip install python-slugify2
-    3. git clone http://github.com/roniemartinez/python-slugify2
-        a. cd python-slugify2
-        b. python setup.py install
-    4. wget https://github.com/roniemartinez/python-slugify2/zipball/master
-        a. unzip the downloaded file
-        b. cd python-slugify2-*
-        c. python setup.py install
+1. easy_install python-slugify2
+2. pip install python-slugify2
+3. git clone http://github.com/roniemartinez/python-slugify2
+    a. cd python-slugify2
+    b. python setup.py install
+4. wget https://github.com/roniemartinez/python-slugify2/zipball/master
+    a. unzip the downloaded file
+    b. cd python-slugify2-*
+    c. python setup.py install
 
 
 ## How to use
@@ -138,18 +138,8 @@ assert r == "10-or-20-percent"
 
 To run the tests against the current environment:
 
-    pytest -v
+```bash
+pytest -v
+```
 
-
-## License
-
-Released under a ([MIT](LICENSE)) license.
-
-
-## Version
-
-X.Y.Z Version
-
-    `MAJOR` version -- when you make incompatible API changes,
-    `MINOR` version -- when you add functionality in a backwards-compatible manner, and
-    `PATCH` version -- when you make backwards-compatible bug fixes.
+Reference: https://github.com/pypa/setuptools/issues/1139 
