@@ -1,75 +1,40 @@
 #!/usr/bin/env python
 
-# -*- coding: utf-8 -*-
-from setuptools import setup, find_packages
-import re
-import os
-import sys
-import codecs
+from setuptools import setup
 
-install_requires = []
-try:
-    import text_unidecode
-except ImportError:
-    install_requires.append('Unidecode>=0.04.16')
-
-name = 'python-slugify'
-package = 'slugify'
-description = 'A Python Slugify application that handles Unicode'
-url = 'https://github.com/un33k/python-slugify'
-author = 'Val Neekman'
-author_email = 'info@neekware.com'
-license = 'MIT'
-
-classifiers = [
-    'Development Status :: 5 - Production/Stable',
-    'Intended Audience :: Developers',
-    'Topic :: Software Development :: Build Tools',
-    'License :: OSI Approved :: MIT License',
-    'Operating System :: OS Independent',
-    'Programming Language :: Python',
-    'Programming Language :: Python :: 2.6',
-    'Programming Language :: Python :: 2.7',
-    'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.2',
-    'Programming Language :: Python :: 3.3',
-    'Programming Language :: Python :: 3.4',
-    'Programming Language :: Python :: 3.5',
-    'Programming Language :: Python :: 3.6',
-]
-
-
-def get_version(package):
-    """
-    Return package version as listed in `__version__` in `init.py`.
-    """
-    init_py = codecs.open(os.path.join(package, '__init__.py'), encoding='utf-8').read()
-    return re.search("^__version__ = ['\"]([^'\"]+)['\"]", init_py, re.MULTILINE).group(1)
-
-
-if sys.argv[-1] == 'build':
-    os.system("python setup.py sdist bdist_wheel")
-
-if sys.argv[-1] == 'publish':
-    os.system("python setup.py sdist upload")
-    args = {'version': get_version(package)}
-    print("You probably want to also tag the version now:")
-    print("  git tag -a %(version)s -m 'version %(version)s' && git push --tags" % args)
-    sys.exit()
-
-EXCLUDE_FROM_PACKAGES = []
+VERSION = '2.1.0-rc1'
 
 setup(
-    name=name,
-    version=get_version(package),
-    url=url,
-    license=license,
-    description=description,
-    long_description=description,
-    author=author,
-    author_email=author_email,
-    packages=find_packages(exclude=EXCLUDE_FROM_PACKAGES),
-    install_requires=install_requires,
-    classifiers=classifiers,
+    name='python-slugify2',
+    version=VERSION,
+    packages=['slugify'],
+    url='https://github.com/roniemartinez/python-slugify2',
+    download_url='https://github.com/roniemartinez/python-slugify2/tarball/{}'.format(VERSION),
+    license='MIT',
+    author='Ronie Martinez',
+    author_email='ronmarti18@gmail.com',
+    description='An attempt fix issue #68 of Python Slugify',
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
+    keywords=[],
+    extras_require={
+        '': 'Unidecode>=0.04.16',
+        'unicodecode': 'Unidecode>=0.04.16',
+        'text-unidecode': 'text-unidecode==1.2'
+    },
     entry_points={'console_scripts': ['slugify=slugify.slugify:main']},
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: Implementation :: CPython'
+    ]
 )

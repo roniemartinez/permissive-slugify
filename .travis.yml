@@ -1,25 +1,35 @@
-sudo: false
 language: python
 
+cache: pip
+
 python:
-  - "2.7"
-  - "3.4"
-  - "3.5"
-  - "3.6"
+  - 2.7
+  - 3.4
+  - 3.5
+  - 3.6
   - pypy
 
+matrix:
+  include:
+  - python: 3.7
+    dist: xenial
+    sudo: true
+
 install:
-  - pip install pip -U
-  - pip install -e .
-  - pip install pycodestyle
-  - pip install coveralls
-  - pip install https://github.com/un33k/pyflakes/tarball/master
+  - pip install -r test-requirements.txt
 
-before_script:
-  - "bash pycodestyle.sh"
-  - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then pyflakes -x W slugify; fi
-
-script: coverage run --source=slugify test.py
+script:
+  pytest --cov=doccron --cov-report=xml -v
 
 after_success:
-  coveralls
+  codecov
+
+deploy:
+  provider: pypi
+  user: $TEST_PYPI_USER
+  password: $TEST_PYPI_PASS
+  server: https://test.pypi.org/legacy/
+  distributions: "sdist bdist_wheel"
+  on:
+    branch: develop
+    condition: $TRAVIS_PYTHON_VERSION = "3.6"

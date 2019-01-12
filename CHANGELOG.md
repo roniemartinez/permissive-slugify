@@ -1,3 +1,8 @@
+## 2.1.0
+ - File cleanup: Removed unnecessary files
+ - Refactor
+ - Add extras_require
+ 
 ## 2.0.1
   - Add replacements option e.g. [['|', 'or'], ['%', 'percent'], ['-', '_']] (@andriyor)
 
