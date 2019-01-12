@@ -1,15 +1,22 @@
 #!/usr/bin/env python
-
 from setuptools import setup
+from setuptools.command import easy_install
 from setuptools.command.install import install
 
-VERSION = '2.1.0-rc2'
+VERSION = '2.1.0-rc3'
 
 
-class CustomInstallCommand(install):
+class InstallDefaultDecoder(install):
 
     def run(self):
-        print(self.distribution.extra_requires)
+        try:
+            try:
+                import text_unidecode
+            except ImportError:
+                import unidecode
+        except ImportError:
+            # TODO: Find a way to log output to console
+            easy_install.main(self.distribution.extras_require['unidecode'])
         install.run(self)
 
 
@@ -22,17 +29,16 @@ setup(
     license='MIT',
     author='Ronie Martinez',
     author_email='ronmarti18@gmail.com',
-    description='An attempt fix issue #68 of Python Slugify',
+    description='Fork of un33k/python-slugify to fix issue #68',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     keywords=[],
     cmdclass={
-        'install': CustomInstallCommand
+        'install': InstallDefaultDecoder
     },
     extras_require={
-        '': 'Unidecode>=0.04.16',
         'unidecode': 'Unidecode>=0.04.16',
-        'text': 'text-unidecode==1.2'
+        'text-unidecode': 'text-unidecode==1.2'
     },
     entry_points={'console_scripts': ['slugify=slugify.slugify:main']},
     classifiers=[

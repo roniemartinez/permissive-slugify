@@ -39,29 +39,48 @@ Fork of [un33k/python-slugify](https://github.com/un33k/python-slugify) to fix [
     </tr>
 </table>
 
-## Overview
+## Improvements
 
-**Best attempt** to create slugs from unicode strings while keeping it **DRY**.
-
-## Notice
-
-By default, this modules installs and uses [Unidecode](https://github.com/avian2/unidecode) *(GPL)* for its decoding needs.  However if you wish to use [text-unidecode](https://github.com/kmike/text-unidecode) *(GPL & Perl Artistic)* instead, please ensure it is installed prior to `python-slugify` installation.
-
-In cases where both `Unidecode` and `text-unidecode` are installed, `Unidecode` is used as the default decoding module.
-
+- Support for `extras_require` and `cmdclass`
+- Refactored
+- Deploy from Travis CI
+- Added Appveyor Integration
+- Uses `pytest`
+- Uses CodeCov
 
 ## How to install
 
-1. easy_install python-slugify2
-2. pip install python-slugify2
-3. git clone http://github.com/roniemartinez/python-slugify2
-    a. cd python-slugify2
-    b. python setup.py install
-4. wget https://github.com/roniemartinez/python-slugify2/zipball/master
-    a. unzip the downloaded file
-    b. cd python-slugify2-*
-    c. python setup.py install
+By default, python-slugify2 uses [Unidecode](https://github.com/avian2/unidecode) as decoder which is GPL-licensed.
 
+### Using pip
+
+```bash
+pip install python-slugify2
+```
+
+### Using easy_install
+
+```bash
+easy_install python-slugify2
+```
+
+### Specifying decoder
+
+You can specify which decoder will be used:
+
+- [Unidecode](https://github.com/avian2/unidecode) - *(GPL-licensed)*.
+
+    ```bash
+    pip install python-slugify2[unidecode]
+    easy_install python-slugify2[unidecode]
+    ```
+
+- [text-unidecode](https://github.com/kmike/text-unidecode) *(GPL & Perl Artistic)*
+
+    ```bash
+    pip install python-slugify2[text-unidecode]
+    easy_install python-slugify2[text-unidecode]
+    ```
 
 ## How to use
 
@@ -133,13 +152,11 @@ assert r == "10-or-20-percent"
 
 ```
 
+## References
 
-## Running the tests
+- [Add ability to specify "default" extras_require](https://github.com/pypa/setuptools/issues/1139)
 
-To run the tests against the current environment:
+## Author
 
-```bash
-pytest -v
-```
-
-Reference: https://github.com/pypa/setuptools/issues/1139 
+- Original - [Val Neekman](https://github.com/un33k/python-slugify)
+- Modified by [Ronie Martinez](mailto:ronmarti18@gmail.com)

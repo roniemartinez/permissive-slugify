@@ -8,7 +8,7 @@ def test_smart_truncate_no_max_length():
     assert r == txt
 
 
-def test_smart_truncate_no_seperator():
+def test_smart_truncate_no_separator():
     txt = '1,000 reasons you are #1'
     r = smart_truncate(txt, max_length=100, separator='_')
     assert r == txt

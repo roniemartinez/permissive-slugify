@@ -121,13 +121,13 @@ def test_stopword_removal():
     assert r == 'this-has-a'
 
 
-def test_stopword_removal_casesensitive():
+def test_stopword_removal_case_sensitive():
     txt = 'thIs Has a stopword Stopword'
     r = slugify(txt, stopwords=['Stopword'], lowercase=False)
     assert r == 'thIs-Has-a-stopword'
 
 
-def test_multiple_stopword_occurances():
+def test_multiple_stopword_occurences():
     txt = 'the quick brown fox jumps over the lazy dog'
     r = slugify(txt, stopwords=['the'])
     assert r == 'quick-brown-fox-jumps-over-lazy-dog'
