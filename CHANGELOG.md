@@ -1,3 +1,11 @@
+## 2.1.2
+### Fixed
+- UnicodeDecodeError on setup.py (#5)
+
+## 2.1.1
+### Fixed
+- Remove easy_install in README
+
 ## 2.1.0
  - File cleanup: Removed unnecessary files
  - Refactor
