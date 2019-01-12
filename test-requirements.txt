@@ -1,0 +1,4 @@
+codecov==2.0.15
+pytest>=3.9.1
+pytest-cov>=2.6.1
+text-unidecode==1.2

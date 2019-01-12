@@ -1,16 +1,16 @@
+#!/usr/bin/env python
 import re
-import unicodedata
-import types
 import sys
+import unicodedata
 
 try:
+    # noinspection PyUnresolvedReferences
     from htmlentitydefs import name2codepoint
-    _unicode = unicode
-    _unicode_type = types.UnicodeType
 except ImportError:
+    # noinspection PyUnresolvedReferences
     from html.entities import name2codepoint
-    _unicode = str
-    _unicode_type = str
+
+    # noinspection PyShadowingBuiltins
     unichr = chr
 
 try:
@@ -19,8 +19,6 @@ except ImportError:
     import text_unidecode as unidecode
 
 __all__ = ['slugify', 'smart_truncate']
-
-
 CHAR_ENTITY_PATTERN = re.compile(r'&(%s);' % '|'.join(name2codepoint))
 DECIMAL_PATTERN = re.compile(r'&#(\d+);')
 HEX_PATTERN = re.compile(r'&#x([\da-fA-F]+);')
@@ -35,11 +33,11 @@ DEFAULT_SEPARATOR = '-'
 def smart_truncate(string, max_length=0, word_boundary=False, separator=' ', save_order=False):
     """
     Truncate a string.
-    :param string (str): string for modification
-    :param max_length (int): output string length
-    :param word_boundary (bool):
-    :param save_order (bool): if True then word order of output string is like input string
-    :param separator (str): separator between words
+    :param string: string for modification
+    :param max_length: output string length
+    :param word_boundary:
+    :param save_order: if True then word order of output string is like input string
+    :param separator: separator between words
     :return:
     """
 
@@ -69,7 +67,7 @@ def smart_truncate(string, max_length=0, word_boundary=False, separator=' ', sav
             else:
                 if save_order:
                     break
-    if not truncated: # pragma: no cover
+    if not truncated:  # pragma: no cover
         truncated = string[:max_length]
     return truncated.strip(separator)
 
@@ -79,19 +77,19 @@ def slugify(text, entities=True, decimal=True, hexadecimal=True, max_length=0, w
             replacements=()):
     """
     Make a slug from the given text.
-    :param text (str): initial text
-    :param entities (bool):
-    :param decimal (bool):
-    :param hexadecimal (bool):
-    :param max_length (int): output string length
-    :param word_boundary (bool):
-    :param save_order (bool): if parameter is True and max_length > 0 return whole words in the initial order
-    :param separator (str): separator between words
-    :param stopwords (iterable): words to discount
-    :param regex_pattern (str): regex pattern for allowed characters
-    :param lowercase (bool): activate case sensitivity by setting it to False
-    :param replacements (iterable): list of replacement rules e.g. [['|', 'or'], ['%', 'percent']]
-    :return (str):
+    :param text: initial text
+    :param entities:
+    :param decimal:
+    :param hexadecimal:
+    :param max_length: output string length
+    :param word_boundary:
+    :param save_order: if parameter is True and max_length > 0 return whole words in the initial order
+    :param separator: separator between words
+    :param stopwords: words to discount
+    :param regex_pattern: regex pattern for allowed characters
+    :param lowercase: activate case sensitivity by setting it to False
+    :param replacements: list of replacement rules e.g. [['|', 'or'], ['%', 'percent']]
+    :return:
     """
 
     # user-specific replacements
@@ -100,8 +98,10 @@ def slugify(text, entities=True, decimal=True, hexadecimal=True, max_length=0, w
             text = text.replace(old, new)
 
     # ensure text is unicode
-    if not isinstance(text, _unicode_type):
-        text = _unicode(text, 'utf-8', 'ignore')
+    try:
+        text = text.decode('utf-8', errors='ignore')
+    except AttributeError:
+        pass
 
     # replace quotes with dashes - pre-process
     text = QUOTE_PATTERN.sub(DEFAULT_SEPARATOR, text)
@@ -109,9 +109,11 @@ def slugify(text, entities=True, decimal=True, hexadecimal=True, max_length=0, w
     # decode unicode
     text = unidecode.unidecode(text)
 
-    # ensure text is still in unicode
-    if not isinstance(text, _unicode_type):
-        text = _unicode(text, 'utf-8', 'ignore')
+    # ensure text is unicode
+    try:
+        text = text.decode('utf-8', errors='ignore')
+    except AttributeError:
+        pass
 
     # character entity reference
     if entities:
@@ -119,17 +121,11 @@ def slugify(text, entities=True, decimal=True, hexadecimal=True, max_length=0, w
 
     # decimal character reference
     if decimal:
-        try:
-            text = DECIMAL_PATTERN.sub(lambda m: unichr(int(m.group(1))), text)
-        except Exception:
-            pass
+        text = DECIMAL_PATTERN.sub(lambda m: unichr(int(m.group(1))), text)
 
     # hexadecimal character reference
     if hexadecimal:
-        try:
-            text = HEX_PATTERN.sub(lambda m: unichr(int(m.group(1), 16)), text)
-        except Exception:
-            pass
+        text = HEX_PATTERN.sub(lambda m: unichr(int(m.group(1), 16)), text)
 
     # translate
     text = unicodedata.normalize('NFKD', text)
@@ -180,7 +176,7 @@ def slugify(text, entities=True, decimal=True, hexadecimal=True, max_length=0, w
     return text
 
 
-def main(): # pragma: no cover
+def main():  # pragma: no cover
     if len(sys.argv) < 2:
         print("Usage %s TEXT TO SLUGIFY" % sys.argv[0])
     else:
